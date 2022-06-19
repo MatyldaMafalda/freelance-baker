@@ -14,10 +14,3 @@ export const parseToken = (token: string): TokenPayload => {
 
     return JSON.parse(payload);
 };
-
-export const hasRole = (role: Role, allowedRoles: Role[]): boolean => {
-    return allowedRoles.some((allowedRole) => allowedRole === role);
-};
-
-export const ALL_ROLES = [Role.Baker, Role.Customer];
-export const ADMIN_ROLES = [Role.Baker];

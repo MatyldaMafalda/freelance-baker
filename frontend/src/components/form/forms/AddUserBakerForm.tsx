@@ -4,8 +4,6 @@ import { Form, Formik, FormikValues } from "formik";
 import * as Yup from "yup";
 import { TextInput } from "components/form/TextInput";
 import { Button } from "components/form/Button";
-import { Role } from "types/authTypes";
-// import { KeyAccountRequest } from "store";
 
 const FormStyled = styled(Form)`
     display: flex;
@@ -13,29 +11,19 @@ const FormStyled = styled(Form)`
     gap: 1rem;
 `;
 
-
 const validationSchema = Yup.object().shape({
     name: Yup.string().required(),
     lastname: Yup.string().required(),
     email: Yup.string().required(),
     password: Yup.string().required(),
-
 });
 
 interface AddUserBakerFormProps {
     handleSubmit: (values: any) => void;
-    editData?: any | null;
 }
 
-export const  AddUserBakerForm: React.FC<AddUserBakerFormProps> = ({ handleSubmit, editData }) => {
-    let initialValues: any;
-
-    if (editData) {
-        const { name, keyAccountNumber } = editData;
-        initialValues = { name, keyAccountNumber };
-    } else {
-        initialValues = { name: "", lastname: "", email: "", password: "" };
-    }
+export const AddUserBakerForm: React.FC<AddUserBakerFormProps> = ({ handleSubmit }) => {
+    const initialValues = { name: "", lastname: "", email: "", password: "" };
 
     return (
         <Formik<FormikValues> initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>

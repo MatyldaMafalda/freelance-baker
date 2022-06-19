@@ -4,13 +4,10 @@ import { routes } from "routing/routes";
 import styled from "styled-components";
 
 import { useLogInMutation } from "store";
-import { Logo } from "components/logo/Logo";
 import { LoginForm } from "components/form/forms/LoginForm";
 import { Loader } from "components/common/Loader";
 import { themeColor } from "styles/styleUtils";
 import { LoaderOverlap } from "components/styled/LoaderOverlap";
-
-
 
 const Panel = styled.section`
     position: relative;
@@ -30,21 +27,19 @@ export const LoginPage: React.VFC = () => {
     const [logIn, { isLoading }] = useLogInMutation();
 
     return (
-      
-            <Panel>
-                <LoginForm
-                    handleSubmit={(values) => {
-                        logIn(values)
-                            .then(() => navigate((routerState as Location)?.pathname ?? routes.dashboard.path))
-                            .catch(() => alert("Wrong credentials"));
-                    }}
-                />
-                {isLoading && (
-                    <LoaderOverlap>
-                        <Loader size={"4rem"} />
-                    </LoaderOverlap>
-                )}
-            </Panel>
-       
+        <Panel>
+            <LoginForm
+                handleSubmit={(values) => {
+                    logIn(values)
+                        .then(() => navigate((routerState as Location)?.pathname ?? routes.dashboard.path))
+                        .catch(() => alert("Wrong credentials"));
+                }}
+            />
+            {isLoading && (
+                <LoaderOverlap>
+                    <Loader size={"4rem"} />
+                </LoaderOverlap>
+            )}
+        </Panel>
     );
 };

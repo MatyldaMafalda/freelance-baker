@@ -48,5 +48,5 @@ export const GlobalStyles = createGlobalStyle`
     isolation: isolate;
   }
 `;
- // border: none;
-      // background: unset;
+// border: none;
+// background: unset;

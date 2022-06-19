@@ -20,7 +20,6 @@ const ContentLayout = styled.div`
 `;
 
 export const Layout: React.FC = ({ children }) => {
-
     return (
         <PageLayout>
             <Header />

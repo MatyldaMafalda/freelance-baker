@@ -4,7 +4,6 @@ import { RegisterPage } from "pages/RegisterPage";
 
 import { Role } from "types/authTypes";
 import { AuthRoute, Route } from "types/routingTypes";
-import { ADMIN_ROLES, ALL_ROLES } from "utils/authUtils";
 
 interface Routes {
     dashboard: Route;
@@ -20,7 +19,7 @@ export const routes: Routes = {
         path: "/",
         Page: DashboardPage,
     },
-    
+
     register: {
         path: "/register",
         Page: RegisterPage,
@@ -32,7 +31,7 @@ export const routes: Routes = {
     bakerAdministration: {
         path: "/baker-admin",
         Page: KeyAccountsPage,
-        allowedRoles: Role.Baker,
+        allowedRoles: [Role.Baker],
     },
     notFound: {
         path: "/not-found",
@@ -45,9 +44,6 @@ export const routes: Routes = {
 };
 
 export const publicRouteList: Route[] = Object.values(routes).filter((route) => !route.allowedRoles);
-console.log(publicRouteList)
-// AUTHORIZED routes list
-export const roleGuardedRouteList: AuthRoute[] =  Object.values(routes).filter((route) => route.allowedRoles === Role.Baker) as AuthRoute[];
-
-// // // UNAUTHORIZED routes list
-//  export const unguardedRoutesList: Route[] = routesList
+export const roleGuardedRouteList: AuthRoute[] = Object.values(routes).filter(
+    (route) => route.allowedRoles
+) as AuthRoute[];

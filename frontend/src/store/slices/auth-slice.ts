@@ -53,9 +53,8 @@ const authSlice = createSlice({
         builder.addMatcher(
             authApi.endpoints.logIn.matchFulfilled,
             (state, { payload: { accessToken, refreshToken } }: PayloadAction<AuthPayload>) => {
-                
                 const { role } = parseToken(accessToken);
-                console.log("matcher",role)
+                console.log("matcher", role);
                 state.userRole = role;
                 state.accessToken = accessToken;
                 state.refreshToken = refreshToken;

@@ -13,7 +13,6 @@ const LabelText = styled.p`
 `;
 
 const InputStyled = styled.input`
-   
     height: 3rem;
     padding: 0.5rem 1rem;
 `;

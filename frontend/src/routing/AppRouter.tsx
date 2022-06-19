@@ -29,10 +29,9 @@ export const AppRouter: React.VFC = () => (
                 />
             ))}
             {publicRouteList.map(({ path, Page }) => (
-            <Route key={path} path={path} element={<Page />} />
-        ))}
+                <Route key={path} path={path} element={<Page />} />
+            ))}
             <Route path={"/*"} element={<Navigate to={routes.notFound.path} />} />
         </Route>
-        
     </Routes>
 );

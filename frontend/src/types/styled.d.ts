@@ -15,9 +15,9 @@ declare module "styled-components" {
             white: string;
             black: string;
             purple: string;
-        purple200: string;
-        purple300: string;
-        pink: string;
+            purple200: string;
+            purple300: string;
+            pink: string;
             background: string;
             backgroundMask: string;
             primary: string;
