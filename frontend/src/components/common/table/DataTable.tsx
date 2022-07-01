@@ -3,7 +3,6 @@ import Table from "rc-table";
 import { getColumns, addDataKeys } from "components/common/table/table-helper";
 import styled from "styled-components";
 import { themeColor } from "styles/styleUtils";
-import { getIcon } from "components/icons/Icons";
 
 const TableStyled = styled(Table)`
     table {
@@ -15,7 +14,7 @@ const TableStyled = styled(Table)`
             margin-bottom: 0.5rem;
 
             tr {
-                border-bottom: 2px solid ${themeColor("primary")};
+                border-bottom: 2px solid ${themeColor("purple100")};
 
                 th:first-of-type {
                     text-align: left;
@@ -31,7 +30,7 @@ const TableStyled = styled(Table)`
 
         tbody {
             tr {
-                border-bottom: 1px solid ${themeColor("primaryLight")};
+                border-bottom: 1px solid ${themeColor("purple100")};
 
                 td {
                     vertical-align: middle;
@@ -72,7 +71,6 @@ export const DataTable = <T extends { id: string | number }>({
     return (
         <>
             <TableHeader>
-                <span>{getIcon(iconName, { size: "2rem" })}</span>
                 <h2>{title}</h2>
             </TableHeader>
             <TableStyled columns={columns} data={tableData} />

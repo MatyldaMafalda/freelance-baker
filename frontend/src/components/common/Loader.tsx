@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-
-import { SpinnerIcon } from "components/icons/Icons";
+import { SpinnerIcon } from "../icons/Icons";
 
 const LoaderBox = styled.div<{ size: string }>`
     height: ${(props) => props.size};

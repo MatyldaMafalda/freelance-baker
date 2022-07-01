@@ -8,26 +8,16 @@ declare module "styled-components" {
             panel: string;
         };
         boxShadow: {
-            panel: string;
-            widget: string;
+            light: string;
         };
         colors: {
             white: string;
             black: string;
-            purple: string;
+            purple100: string;
             purple200: string;
             purple300: string;
-            pink: string;
+            purple400: string;
             background: string;
-            backgroundMask: string;
-            primary: string;
-            primaryLight: string;
-            primaryDark: string;
-            primaryDarkShade: string;
-            fontLight: string;
-            fontDark: string;
-            fontDisabled: string;
-            redAlert: string;
         };
     }
 }

@@ -1,24 +1,10 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { routes } from "routing/routes";
-import styled from "styled-components";
 
 import { useLogInMutation } from "store";
 import { LoginForm } from "components/form/forms/LoginForm";
 import { Loader } from "components/common/Loader";
-import { themeColor } from "styles/styleUtils";
-import { LoaderOverlap } from "components/styled/LoaderOverlap";
-
-const Panel = styled.section`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 25rem;
-    padding: 2rem;
-    border-radius: ${({ theme }) => theme.borderRadius.panel};
-    box-shadow: ${({ theme }) => theme.boxShadow.panel};
-    background: ${themeColor("white")};
-`;
 
 export const LoginPage: React.VFC = () => {
     const navigate = useNavigate();
@@ -27,7 +13,28 @@ export const LoginPage: React.VFC = () => {
     const [logIn, { isLoading }] = useLogInMutation();
 
     return (
-        <Panel>
+        <>
+            <>
+                Create an account
+                <div>
+                    I want to...
+                    <button
+                        onClick={() => {
+                            navigate(routes.bakerRegister.path);
+                        }}
+                    >
+                        Become a Baker
+                    </button>
+                    <button
+                        onClick={() => {
+                            navigate("/");
+                        }}
+                    >
+                        Just Eat Cakes
+                    </button>
+                </div>
+            </>
+            or sign in
             <LoginForm
                 handleSubmit={(values) => {
                     logIn(values)
@@ -35,11 +42,7 @@ export const LoginPage: React.VFC = () => {
                         .catch(() => alert("Wrong credentials"));
                 }}
             />
-            {isLoading && (
-                <LoaderOverlap>
-                    <Loader size={"4rem"} />
-                </LoaderOverlap>
-            )}
-        </Panel>
+            {isLoading && <Loader size={"4rem"} />}
+        </>
     );
 };

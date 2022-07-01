@@ -22,6 +22,7 @@ interface NavItem {
     to: string;
     title: string;
 }
+
 interface GuarderNavItem {
     to: string;
     title: string;
@@ -36,10 +37,6 @@ const PAGE_LIST: NavItem[] = [
     {
         to: routes.signin.path,
         title: "Sign In",
-    },
-    {
-        to: routes.register.path,
-        title: "Create Account",
     },
     {
         to: "",

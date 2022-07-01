@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Form, Formik, FormikValues } from "formik";
 import * as Yup from "yup";
 import { TextInput } from "components/form/TextInput";
-import { Button } from "components/form/Button";
+import { Button } from "components/common/Button";
 
 const FormStyled = styled(Form)`
     display: flex;
@@ -35,7 +35,7 @@ export const AddUserBakerForm: React.FC<AddUserBakerFormProps> = ({ handleSubmit
                         <TextInput label={"E-mail"} {...getFieldProps("email")} />
                         <TextInput label={"Password"} {...getFieldProps("password")} />
 
-                        <Button type={"submit"} disabled={!isValid || isSubmitting}>
+                        <Button variant={0} type={"submit"} disabled={!isValid || isSubmitting}>
                             Submit
                         </Button>
                     </FormStyled>

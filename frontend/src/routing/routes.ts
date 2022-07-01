@@ -1,13 +1,11 @@
-import { DashboardPage, KeyAccountsPage, NotFoundPage, LoginPage } from "pages";
+import { DashboardPage, BakerAdminPage, NotFoundPage, LoginPage } from "pages";
 import { BakeRegisterPage } from "pages/BakerRegisterPage";
-import { RegisterPage } from "pages/RegisterPage";
 
 import { Role } from "types/authTypes";
 import { AuthRoute, Route } from "types/routingTypes";
 
 interface Routes {
     dashboard: Route;
-    register: Route;
     bakerRegister: Route;
     bakerAdministration: AuthRoute;
     notFound: Route;
@@ -19,18 +17,13 @@ export const routes: Routes = {
         path: "/",
         Page: DashboardPage,
     },
-
-    register: {
-        path: "/register",
-        Page: RegisterPage,
-    },
     bakerRegister: {
         path: "/baker-register",
         Page: BakeRegisterPage,
     },
     bakerAdministration: {
         path: "/baker-admin",
-        Page: KeyAccountsPage,
+        Page: BakerAdminPage,
         allowedRoles: [Role.Baker],
     },
     notFound: {

@@ -30,6 +30,7 @@ export const Header: React.VFC = () => {
         <HeaderWrap>
             <NavWrapper>
                 <Navigation></Navigation>
+                <div>log out</div>
             </NavWrapper>
         </HeaderWrap>
     );

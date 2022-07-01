@@ -11,7 +11,6 @@ interface RoleGuardProps {
 
 export const RoleGuard: React.FC<RoleGuardProps> = ({ children, allowedRoles }) => {
     const role = useAppSelector((state) => state.auth.userRole);
-    qq;
     if (!role || !allowedRoles.includes(role)) {
         return <Navigate to={routes.notFound.path} />;
     }

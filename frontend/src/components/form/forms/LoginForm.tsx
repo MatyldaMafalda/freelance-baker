@@ -5,8 +5,7 @@ import * as Yup from "yup";
 
 import { LoginRequest } from "store";
 import { TextInput } from "components/form/TextInput";
-import { Button } from "components/form/Button";
-import { LoginIcon } from "components/icons/Icons";
+import { Button } from "components/common/Button";
 
 const FormStyled = styled(Form)`
     display: flex;
@@ -34,9 +33,9 @@ export const LoginForm: React.VFC<LoginFormProps> = ({ handleSubmit }) => {
                         <TextInput label={"E-mail"} {...getFieldProps("email")} />
                         <TextInput label={"Password"} type={"password"} {...getFieldProps("password")} />
 
-                        <button type={"submit"} disabled={!isValid}>
+                        <Button variant={1} type={"submit"} disabled={!isValid}>
                             Log in
-                        </button>
+                        </Button>
                     </FormStyled>
                 );
             }}
