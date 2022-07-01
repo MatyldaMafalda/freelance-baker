@@ -30,22 +30,4 @@ lerna-debug.log*
 
 # Personal .env files
 /backend/.env.development.local
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# SSH keys
-.keys
-
-# PEM keys
-*.pem
-
-# frontend
-/frontend/node_modules
-
-# scripts
-/scripts/data-migration/config
+onfig

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prepare": "husky install",
+    "precommit": "cd backend && yarn format && cd ../frontend && yarn format",
+    "prepush": "cd backend && yarn tsc && yarn lint && cd ../frontend && yarn tsc && yarn lint"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
