@@ -18,19 +18,12 @@ export interface UserBakerRequest {
 
 export const userApi = apiWithTag.injectEndpoints({
     endpoints: (builder) => ({
-        // getAuthenticatedUser: builder.query<void, any>({
-        //     query: () => ({
-        //         url: "user",
-        //         method: "GET",
-        //     }),
-        // }),
         addUserBaker: builder.mutation<any, UserBakerRequest>({
             query: (body) => ({
                 url: USER_BASE_PATH,
                 method: "POST",
                 body,
             }),
-            //invalidatesTags: [{ type: BAKER_CACHE_TYPE, id: BAKER_CACHE_ID }],
         }),
     }),
 });

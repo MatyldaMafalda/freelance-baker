@@ -9,7 +9,7 @@ interface Routes {
     bakerRegister: Route;
     bakerAdministration: AuthRoute;
     notFound: Route;
-    signin: Route;
+    signIn: Route;
 }
 
 export const routes: Routes = {
@@ -30,8 +30,8 @@ export const routes: Routes = {
         path: "/not-found",
         Page: NotFoundPage,
     },
-    signin: {
-        path: "/signin",
+    signIn: {
+        path: "/sign-in",
         Page: LoginPage,
     },
 };

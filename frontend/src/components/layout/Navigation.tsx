@@ -3,9 +3,10 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { routes } from "routing/routes";
-import { MEDIA_QUERY, pxToREM, themeColor } from "styles/styleUtils";
+import { themeColor } from "styles/styleUtils";
 import { Role } from "types/authTypes";
-import { useAppSelector } from "store";
+import { useAppSelector, useLogOutMutation } from "store";
+import { Button } from "components/common/Button";
 
 const Nav = styled.nav`
     display: flex;
@@ -14,13 +15,12 @@ const Nav = styled.nav`
 
 export const NavLink = styled(RouterNavLink)``;
 
-const NavLinkTitle = styled.div`
-    flex: 1 0 12rem;
-`;
+const NavLinkTitle = styled.div``;
 
 interface NavItem {
     to: string;
     title: string;
+    hideWhenLoggedIn?: boolean;
 }
 
 interface GuarderNavItem {
@@ -35,7 +35,7 @@ const PAGE_LIST: NavItem[] = [
         title: "About",
     },
     {
-        to: routes.signin.path,
+        to: routes.signIn.path,
         title: "Sign In",
     },
     {
@@ -54,6 +54,12 @@ const GUARDED_PAGE_LIST: GuarderNavItem[] = [
 
 export const Navigation: React.VFC = () => {
     const userRole = useAppSelector((state) => state.auth.userRole);
+    const [logOut] = useLogOutMutation();
+
+    const handleLogOut = () => {
+        logOut();
+    };
+
     return (
         <Nav>
             {userRole &&
@@ -64,11 +70,21 @@ export const Navigation: React.VFC = () => {
                         </NavLink>
                     )
                 )}
-            {PAGE_LIST.map(({ to, title }) => (
-                <NavLink to={to} key={title}>
-                    <NavLinkTitle>{title}</NavLinkTitle>
-                </NavLink>
-            ))}
+            {PAGE_LIST.map(({ to, title }) => {
+                if (to === routes.signIn.path && userRole !== null) {
+                    return (
+                        <NavLinkTitle key={title} onClick={handleLogOut} role={"button"}>
+                            Log out
+                        </NavLinkTitle>
+                    );
+                } else {
+                    return (
+                        <NavLink to={to} key={title}>
+                            <NavLinkTitle>{title}</NavLinkTitle>
+                        </NavLink>
+                    );
+                }
+            })}
         </Nav>
     );
 };

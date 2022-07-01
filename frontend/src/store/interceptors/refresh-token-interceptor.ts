@@ -24,7 +24,6 @@ export const baseQueryWithReAuth: BaseQueryFn<string | FetchArgs, unknown, Fetch
     const { accessToken, refreshToken, isAuthenticated } = (api.getState() as RootState).auth;
     let result = await getQuery(accessToken)(args, api, extraOptions);
 
-    // TODO: error handling
     if (isAuthenticated && result.error && result.error.status === 401) {
         const refreshResult = await getQuery(refreshToken)("/auth/refresh", api, extraOptions);
         if (refreshResult.data) {

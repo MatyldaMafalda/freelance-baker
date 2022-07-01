@@ -10,25 +10,25 @@ const getButtonVariant = (variant: ButtonVariants) => {
     switch (variant) {
         case 0:
             return css`
-              background-color: ${themeColor("white")};
+                background-color: ${themeColor("white")};
             `;
 
         case 1:
             return css`
-              background-color: ${themeColor("white")};
+                background-color: ${themeColor("white")};
             `;
         default:
             return css`
-              background-color: ${themeColor("white")};
+                background-color: ${themeColor("white")};
             `;
     }
 };
 
 const ButtonStyled = styled.button<StyledButtonProps>`
-  height: 2.5rem;
-  padding: 0 1rem;
-  font-size: 1.25rem;
-  border-radius: 0.25rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.25rem;
     ${getButtonVariant(0)}
     :hover {
         cursor: pointer;

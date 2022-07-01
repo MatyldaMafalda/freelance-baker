@@ -25,7 +25,6 @@ export class AuthController {
     @ApiBody({ type: CredentialsDto })
     @Post("auth/login")
     async login(@UserPrincipal() user: AuthUser): Promise<TokensDto> {
-        console.log(user);
         const tokens = await this.authService.login(user);
         await this.authService.hashAndStoreJwtRefreshToken(user, tokens.refreshToken);
         return new TokensDto(tokens.accessToken, tokens.refreshToken);

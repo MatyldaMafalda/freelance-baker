@@ -10,7 +10,3 @@ export interface Route {
 export interface AuthRoute extends Route {
     allowedRoles: Role[];
 }
-
-export interface RouteWithParams<T extends Record<string, string>> extends AuthRoute {
-    getPath(params: T): string;
-}

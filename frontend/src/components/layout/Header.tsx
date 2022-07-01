@@ -5,6 +5,8 @@ import { MEDIA_QUERY, themeColor } from "styles/styleUtils";
 
 import { HEADER_HEIGHT } from "components/layout/layoutConstants";
 import { Navigation } from "components/layout/Navigation";
+import { Button } from "components/common/Button";
+import { useAppSelector, useLogOutMutation } from "../../store";
 
 const HeaderWrap = styled.header`
     display: flex;
@@ -30,7 +32,6 @@ export const Header: React.VFC = () => {
         <HeaderWrap>
             <NavWrapper>
                 <Navigation></Navigation>
-                <div>log out</div>
             </NavWrapper>
         </HeaderWrap>
     );
