@@ -5,6 +5,7 @@ import { routes } from "routing/routes";
 import { useLogInMutation } from "store";
 import { LoginForm } from "components/form/forms/LoginForm";
 import { Loader } from "components/common/Loader";
+import { Button } from "components/common/Button";
 
 export const LoginPage: React.VFC = () => {
     const navigate = useNavigate();
@@ -14,35 +15,34 @@ export const LoginPage: React.VFC = () => {
 
     return (
         <>
-            <>
-                Create an account
-                <div>
-                    I want to...
-                    <button
-                        onClick={() => {
-                            navigate(routes.bakerRegister.path);
-                        }}
-                    >
-                        Become a Baker
-                    </button>
-                    <button
-                        onClick={() => {
-                            navigate("/");
-                        }}
-                    >
-                        Just Eat Cakes
-                    </button>
-                </div>
-            </>
-            or sign in
+            sign in
             <LoginForm
                 handleSubmit={(values) => {
                     logIn(values)
-                        .then(() => navigate((routerState as Location)?.pathname ?? routes.dashboard.path))
+                        .then(() => navigate((routerState as Location)?.pathname ?? routes.home.path))
                         .catch(() => alert("Wrong credentials"));
                 }}
             />
-            {isLoading && <Loader size={"4rem"} />}
+            {isLoading && <Loader size={"1rem"} />}
+            create account...
+            <div>
+                <Button
+                    variant={0}
+                    onClick={() => {
+                        navigate(routes.bakerRegister.path);
+                    }}
+                >
+                    I am a Baker
+                </Button>
+                <Button
+                    variant={0}
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    I just eat cakes
+                </Button>
+            </div>
         </>
     );
 };

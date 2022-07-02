@@ -31,7 +31,11 @@ interface GuarderNavItem {
 
 const PAGE_LIST: NavItem[] = [
     {
-        to: routes.dashboard.path,
+        to: routes.home.path,
+        title: "Home",
+    },
+    {
+        to: routes.home.path,
         title: "About",
     },
     {
