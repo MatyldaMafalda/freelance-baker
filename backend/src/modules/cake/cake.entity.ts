@@ -25,7 +25,4 @@ export class Cake {
 
     @ManyToOne(() => Baker)
     baker: Baker;
-
-    @Column({ name: "baker_id" })
-    bakerId: number;
 }

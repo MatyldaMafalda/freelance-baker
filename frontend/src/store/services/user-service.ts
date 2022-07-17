@@ -8,7 +8,8 @@ interface Baker {
     cakes: any[];
 }
 
-export interface UserBakerRequest {
+export interface UserBaker {
+    id: number;
     name: string;
     email: string;
     password: string;
@@ -16,9 +17,13 @@ export interface UserBakerRequest {
     baker?: Baker;
 }
 
+export interface UserBakerRequest extends Omit<UserBaker, "id"> {
+    password: string;
+}
+
 export const userApi = apiWithTag.injectEndpoints({
     endpoints: (builder) => ({
-        addUserBaker: builder.mutation<any, UserBakerRequest>({
+        addUserBaker: builder.mutation<UserBaker, UserBakerRequest>({
             query: (body) => ({
                 url: USER_BASE_PATH,
                 method: "POST",

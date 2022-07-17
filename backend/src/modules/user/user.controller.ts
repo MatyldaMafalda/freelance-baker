@@ -1,33 +1,45 @@
-import { Controller, Get, Post, Body, Delete, Param } from "@nestjs/common";
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Delete,
+    Param,
+    ClassSerializerInterceptor,
+    UseInterceptors,
+} from "@nestjs/common";
 import { UserService } from "modules/user/user.service";
 import { CreateUserDto } from "modules/user/dto/create-user.dto";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { UserDto } from "modules/user/dto/user.dto";
-import { SkipAuth } from "modules/auth/decorators";
+import { User } from "./user.entity";
+import { SkipAuth } from "../auth/decorators";
 
 @ApiTags("User")
 @Controller("users")
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @Get(":id")
     @ApiBearerAuth()
-    async get(@Param("id") id: string): Promise<UserDto> {
+    @SkipAuth()
+    async get(@Param("id") id: number): Promise<User> {
         const user = await this.userService.findOne({ id });
-        return new UserDto(user);
+        return new User(user);
     }
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @SkipAuth()
     @Post()
     @ApiBearerAuth()
-    async create(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
-        const newUser = await this.userService.create(createUserDto);
-        return new UserDto(newUser);
+    async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+        const user = await this.userService.create(createUserDto);
+        return new User(user);
     }
 
     @Delete(":id")
     @ApiBearerAuth()
-    async delete(@Param("id") id: string): Promise<void> {
+    async delete(@Param("id") id: number): Promise<void> {
         await this.userService.deleteUser(id);
     }
 }

@@ -1,9 +1,9 @@
-import { IsEnum, IsString } from "class-validator";
+import { IsEnum, IsNumber, IsString } from "class-validator";
 import { Role } from "modules/user/enums/role.enum";
 
 export class AuthUser {
-    @IsString()
-    userId: string;
+    @IsNumber()
+    userId: number;
 
     @IsString()
     email: string;
@@ -11,7 +11,7 @@ export class AuthUser {
     @IsEnum(Role)
     role: Role;
 
-    constructor(id: string, email: string, role: Role) {
+    constructor(id: number, email: string, role: Role) {
         this.userId = id;
         this.email = email;
         this.role = role;

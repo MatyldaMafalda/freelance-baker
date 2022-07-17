@@ -65,16 +65,16 @@ export class AuthService {
         return { refreshToken };
     }
 
-    async hashAndStoreJwtRefreshToken(user: AuthUser, refreshToken: string) {
+    async hashAndStoreJwtRefreshToken(authUser: AuthUser, refreshToken: string) {
         const persistRefreshToken = await bcrypt.hash(refreshToken, 10);
         await this.refreshTokenRepository.save({
             token: persistRefreshToken,
-            userId: user.userId,
+            user: { id: authUser.userId },
         });
     }
 
-    async deleteRefreshTokens(userId: string) {
-        await this.refreshTokenRepository.delete({ userId });
+    async deleteRefreshTokens(userId: number) {
+        await this.refreshTokenRepository.delete({ user: { id: userId } });
     }
 
     async findRefreshTokens() {

@@ -4,6 +4,8 @@ import { Form, Formik, FormikValues } from "formik";
 import * as Yup from "yup";
 import { TextInput } from "components/form/TextInput";
 import { Button } from "components/common/Button";
+import { UserBakerRequest } from "store";
+import { Role } from "types/authTypes";
 
 const FormStyled = styled(Form)`
     display: flex;
@@ -19,14 +21,18 @@ const validationSchema = Yup.object().shape({
 });
 
 interface AddUserBakerFormProps {
-    handleSubmit: (values: any) => void;
+    handleSubmit: (values: UserBakerRequest) => void;
 }
 
 export const AddUserBakerForm: React.FC<AddUserBakerFormProps> = ({ handleSubmit }) => {
-    const initialValues = { name: "", lastname: "", email: "", password: "" };
+    const initialValues = { name: "", lastname: "", email: "", password: "", role: Role.Baker };
 
     return (
-        <Formik<FormikValues> initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        <Formik<UserBakerRequest>
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+        >
             {({ getFieldProps, isValid, isSubmitting }) => {
                 return (
                     <FormStyled>

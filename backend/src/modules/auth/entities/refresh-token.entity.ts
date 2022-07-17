@@ -13,7 +13,4 @@ export class RefreshToken {
 
     @ManyToOne(() => User)
     user: User;
-
-    @Column({ name: "user_id" })
-    userId: string;
 }
