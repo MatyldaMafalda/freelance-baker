@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import * as bcrypt from "bcryptjs";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateUserDto } from "modules/user/dto/create-user.dto";
+import { CreateUserCustomerDto } from "modules/user/dto/create-user-customer.dto";
 import { User } from "modules/user/user.entity";
 import { AuthService } from "modules/auth";
 
@@ -12,14 +12,14 @@ export class UserService {
         @InjectRepository(User)
         private usersRepository: Repository<User>,
         @Inject(forwardRef(() => AuthService))
-        private authService: AuthService,
+        private authService: AuthService
     ) {}
 
     async findOne(user: Partial<User>): Promise<User> {
         return this.usersRepository.findOneBy({ email: user.email });
     }
 
-    async create(user: CreateUserDto) {
+    async create(user: User) {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         const savedUser = await this.usersRepository.save({
             ...user,
@@ -37,10 +37,6 @@ export class UserService {
                 return user;
             }
         }
-    }
-
-    async hashUserPassword(password: string): Promise<string> {
-        return await bcrypt.hash(password, 10);
     }
 
     async deleteUserRefreshTokens(userId: number) {

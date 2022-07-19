@@ -9,10 +9,11 @@ import {
     UseInterceptors,
 } from "@nestjs/common";
 import { UserService } from "modules/user/user.service";
-import { CreateUserDto } from "modules/user/dto/create-user.dto";
+import { CreateUserCustomerDto } from "modules/user/dto/create-user-customer.dto";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { User } from "./user.entity";
-import { SkipAuth } from "../auth/decorators";
+import { User } from "modules/user/user.entity";
+import { SkipAuth } from "modules/auth/decorators";
+import { UserDto } from "modules/user/dto/user.dto";
 
 @ApiTags("User")
 @Controller("users")
@@ -22,19 +23,18 @@ export class UserController {
     @UseInterceptors(ClassSerializerInterceptor)
     @Get(":id")
     @ApiBearerAuth()
-    @SkipAuth()
-    async get(@Param("id") id: number): Promise<User> {
+    async get(@Param("id") id: number): Promise<UserDto> {
         const user = await this.userService.findOne({ id });
-        return new User(user);
+        return new UserDto(user);
     }
 
     @UseInterceptors(ClassSerializerInterceptor)
     @SkipAuth()
     @Post()
     @ApiBearerAuth()
-    async create(@Body() createUserDto: CreateUserDto): Promise<User> {
-        const user = await this.userService.create(createUserDto);
-        return new User(user);
+    async create(@Body() newUser: User): Promise<UserDto> {
+        const user = await this.userService.create(newUser);
+        return new UserDto(user);
     }
 
     @Delete(":id")

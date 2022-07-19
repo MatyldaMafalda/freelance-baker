@@ -20,21 +20,16 @@ export class User {
     @Column("varchar", { unique: true, length: 128 })
     email: string;
 
-    @Exclude()
     @Column("varchar", { length: 128 })
     password: string;
 
     @Column({ type: "enum", enum: Role, name: "role" })
     role: Role;
 
-    @OneToOne(() => Baker, (baker) => baker.user, { cascade: true, eager: true })
+    @OneToOne(() => Baker, (baker) => baker.user, { nullable: true, cascade: true, eager: true })
     @JoinColumn()
     baker?: Baker;
 
     @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user, { cascade: true })
     refreshTokens: RefreshToken[];
-
-    constructor(partial: Partial<User>) {
-        Object.assign(this, partial);
-    }
 }
